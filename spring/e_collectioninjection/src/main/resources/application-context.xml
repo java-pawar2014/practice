@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="course" class="com.springcore.colinj.bean.Course">
+		<property name="courseCode" value="255" />
+		<property name="courseName" value="B.Tech." />
+		<property name="subjects">
+			<list>
+				<ref bean="subject1" />
+				<ref bean="subject2" />
+				<ref bean="subject3" />
+				<ref bean="subject4" />
+				<ref bean="subject3" />
+				<ref bean="subject4" />
+				<ref bean="subject3" />
+				<ref bean="subject4" />
+			</list>
+		</property>
+<!-- 
+		<constructor-arg name="subjectsSet">
+			<set value-type="com.springcore.colinj.bean.Subject">
+				<ref bean="subject2" />
+				<ref bean="subject4" />
+				<ref bean="subject1" />
+				<ref bean="subject4" />
+				<ref bean="subject1" />
+				<ref bean="subject3" />
+				<ref bean="subject3" />
+				<ref bean="subject3" />
+				<ref bean="subject3" />
+			</set>
+		</constructor-arg>
+ -->
+		<constructor-arg name="subjectMap">
+			<map key-type="java.lang.String" value-type="com.springcore.colinj.bean.Subject">
+				<entry key="subject1" value-ref="subject1" />
+				<entry key="subject2">
+					 <ref bean="subject2"/>
+				</entry>
+				<entry key="subject3" value-ref="subject3" />
+				<entry key="subject4" value-ref="subject4" />
+				<entry key="subject3" value-ref="subject3" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="subject1" class="com.springcore.colinj.bean.Subject">
+		<property name="subjectCode" value="100" />
+		<property name="subjectName" value="C"></property>
+	</bean>
+	<bean id="subject2" class="com.springcore.colinj.bean.Subject">
+		<property name="subjectCode" value="200" />
+		<property name="subjectName" value="C++"></property>
+	</bean>
+	<bean id="subject3" class="com.springcore.colinj.bean.Subject">
+		<property name="subjectCode" value="300" />
+		<property name="subjectName" value="Java"></property>
+	</bean>
+	<bean id="subject4" class="com.springcore.colinj.bean.Subject">
+		<property name="subjectCode" value="400" />
+		<property name="subjectName" value=".Net"></property>
+	</bean>
+</beans>

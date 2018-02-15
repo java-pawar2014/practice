@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="baseCourse" abstract="true">
+		<property name="courseCode" value="ENG11211" />
+		<property name="courseName" value="ENGINEERING" />
+		<property name="courseDuration" value="5" />
+	</bean>
+<!-- 
+	<bean id="CS1YR1SEM" class="com.springcore.colmerge.bean.Course"
+		parent="baseCourse">
+		<property name="subjects">
+			<list>
+				<value>C</value>
+				<value>C++</value>
+				<value>Java</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ECE1YR1SEM" class="com.springcore.colmerge.bean.Course"
+		parent="baseCourse">
+		<property name="subjects">
+			<list>
+				<value>C</value>
+				<value>C++</value>
+				<value>Java</value>
+				<value>Electronics</value>
+			</list>
+		</property>
+	</bean>
+ -->	
+	<bean id="CS1YR1SEM" class="com.springcore.colmerge.bean.Course"
+		parent="baseCourse">
+		<property name="subjects">
+			<list>
+				<value>C</value>
+				<value>C++</value>
+				<value>Java</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ECE1YR1SEM" class="com.springcore.colmerge.bean.Course"
+		parent="CS1YR1SEM">
+		<property name="subjects">
+			<list merge="true">
+				<value>Electronics</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

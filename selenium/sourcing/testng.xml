@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Selenium-TestNG Data Sourcing">
+	<test name="Data Sourcing Batch 1">
+		<classes>
+			<class name="com.sourcing.handler.SourceHandlerTest" />
+		</classes>
+	</test>
+</suite>

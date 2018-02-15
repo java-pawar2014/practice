@@ -1,0 +1,35 @@
+JAX-RS has a bunch of built-in handlers that can marshal to and from a few different specific Java types.
+While most are low-level conversions, they can still be useful to your JAX-RS classes.
+
+A) Built in content marshalling:
+   JAX-RS has a bunch of built-in handlers that can marshal to and from a few different specific Java types.
+   While most are low-level conversions, they can still be useful to your JAX-RS classes.
+	1) javax.ws.rs.core.StreamingOutput
+		- is a simple callback interface that you implement when you want to do raw streaming of response bodies
+	2) java.io.InputStream, java.io.Reader
+		- For reading request message bodies, you can use a raw InputStream or Reader for inputting any media type.
+	3) java.io.File
+		- Instances of java.io.File can also be used for input and output of any media type.
+	4) byte[]
+		- A raw array of bytes can be used for the input and output of any media type.
+	5) String, char[]
+		- Most of the data formats on the Internet are text based.
+		- JAX-RS can convert any text-based format to and from either a String or an array of characters.
+	6) MultivaluedMap and Form Input
+		- HTML forms are a common way to post data to web servers.
+		- Form data is encoded as the application/x-www-form-urlencoded media type.
+		- We can inject a MultivaluedMap<String, String> that represents all the form data sent with the request.
+	7) javax.xml.transform.Source
+		- The javax.xml.transform.Source interface represents XML input or output.
+		- It is usually used to perform XSLT transformations on input documents.
+B) JAXB
+   JAXB is an older Java specification and is not defined by JAX-RS.
+   JAXB is an annotation framework that maps Java classes to XML and XML schema. 
+   It is extremely useful because instead of interacting with an abstract representation of an XML document,
+   you can work with real Java objects that are closer to the domain you are modeling.
+   JAX-RS has built-in support for JAXB.
+   
+   1) JAXB JAX-RS Handlers
+   	  The JAX-RS specification requires implementations to automatically support the marshalling and 
+   	  unmarshalling of classes that are annotated with @XmlRootElement or @XmlType as well as objects 
+   	  wrapped inside javax.xml.bind.JAXBElement instances.

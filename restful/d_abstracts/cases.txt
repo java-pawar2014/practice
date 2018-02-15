@@ -1,0 +1,21 @@
+In Resteasy:
+1) If we wrote @Path only at interface level and provide
+   multiple implementations, the 'resteasy' implementation 
+   picks the implemented resource randomly. For every 
+   request we will get alternative outputs.
+
+2) If we wrote @Path at implemented class, the resteasy will
+   overrides the annotation written at interface level and
+   annotation written at class level will be considered.
+   (To test this, write different url-pattern in @Path).
+   
+In Jersey:
+1) If we wrote @Path at interface level and send request 
+   we will get Exception saying: Could not find a suitable 
+   constructor in com.iac.resource.Doctor class.
+
+2) If we wrote @Path at one implemented class, the jersey will
+   consider annotation written at class level.
+   If we write @Path with same url-pattern at multiple implemented
+   classes, our application will not gets deployed.
+   

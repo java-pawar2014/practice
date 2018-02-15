@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- Add the package name for automatic scanning -->
+	<context:component-scan base-package="com.spring.aop.tx.*" />
+
+	<!-- Activate the annotations -->
+	<context:annotation-config />
+
+	<!-- JPA Configuration -->
+	<!-- 1) Configure Datasource, that is currently hsqldb (in-memory database) -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/spring_aop" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+	<!-- 2) Configure EntityManagerFactory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:packagesToScan="com.spring.aop.tx.bean" p:dataSource-ref="dataSource">
+		<property name="jpaVendorAdapter">
+			<!-- Inner bean -->
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 3) TransactionManager -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+	<!-- AOP Configuration for selecting transactional methods -->
+	<!-- 1) Transactional advice (what 'happens'; see the <aop:advisor/> ) -->
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- Ensure that the above transactional advice runs for any execution of 
+		a method in the service package -->
+
+	<aop:config>
+		<aop:pointcut id="serviceMethods"
+			expression="execution(* 
+		com.spring.aop.tx.service.handler.*.*(..))" />
+		<aop:advisor pointcut-ref="serviceMethods" advice-ref="txAdvice" />
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.aop.tx.*.*.*(..))"
+			id="loggingAspect" />
+		<aop:aspect ref="loggingAroundAspect">
+			<aop:around method="logging" pointcut-ref="loggingAspect" />
+		</aop:aspect>
+	</aop:config>
+</beans>

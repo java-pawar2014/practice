@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Sample Suite" verbose="1">
+
+
+	<test name="com.selenium.testng">
+		<classes>
+			<class name="com.selenium.testng.SampleTest" />
+		</classes>
+	</test>
+
+	<test name="com.selenium.testng">
+		<packages>
+			<package name="com.selenium.testng" />
+		</packages>
+	</test>
+
+</suite>

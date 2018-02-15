@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="employee" class="com.springcore.postprocessor.bean.EmployeeVO"
+		scope="prototype" />
+	<bean id="employeeDao" class="com.springcore.postprocessor.dao.EmployeeDAO" />
+	<bean id="employeeDelegate" class="com.springcore.postprocessor.delegate.EmployeeDelegate">
+		<property name="employeeDAO" ref="employeeDao" />
+		<lookup-method name="getEmployeeVO" bean="employee" />
+	</bean>
+	<bean id="baseVoProcessor" class="com.springcore.postprocessor.BaseVOPostProcessor" />
+</beans>

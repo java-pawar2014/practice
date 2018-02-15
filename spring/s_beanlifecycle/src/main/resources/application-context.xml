@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+	<bean id="robot" class="com.springcore.beanlc.bean.decl.Robot"
+		init-method="startup" destroy-method="release">
+		<constructor-arg name="sensorDriver" ref="sensor" />
+		<property name="name" value="INFRAROBO" />
+	</bean>
+	<bean id="sensor" class="com.springcore.beanlc.bean.decl.SensorDriver">
+		<property name="type" value="Infra-red" />
+	</bean>
+
+ -->	
+	<bean id="robot" class="com.springcore.beanlc.bean.prog.Robot">
+		<constructor-arg name="sensorDriver" ref="sensor"/>
+		<property name="name" value="INFRAROBO"/>
+	</bean>
+	<bean id="sensor" class="com.springcore.beanlc.bean.prog.SensorDriver">
+		<property name="type" value="Infra-red" />
+	</bean>
+	
+</beans>

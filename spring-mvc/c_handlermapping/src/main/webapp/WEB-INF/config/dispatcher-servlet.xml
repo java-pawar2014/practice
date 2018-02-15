@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 1) -->
+		<!-- SimpleUrlHandlerMapping -->
+		<!-- This handler takes request URI as input and compares it with keys in 
+			collection, if the request URI matches with key, handler maps request with 
+			corresponding controller configured by developer. Here, the value of the 
+			key must be corresponding bean 'id' of the controller
+		 -->
+<!-- 	
+		<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+			<property name="mappings">
+				<props>
+					<prop key="/home.htm">viewHome</prop>
+					<prop key="/index.htm">viewIndex</prop>
+				</props>
+			</property>
+		</bean>
+		<bean id="viewHome" class="com.handlermapping.controller.HomeController" />
+		<bean id="viewIndex" class="com.handlermapping.controller.IndexController" />
+	
+ -->	
+		<!-- 2) -->
+	 	<!-- BeanNameUrlHandlerMapping -->
+	 	<!-- This handler maps the incoming request URI with bean 'name' directly, 
+	 		no other configurations are required. This is default handler, without 
+	 		configuring this handler also the application can handle requests. -->
+	
+	 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+		<bean name="/viewHome.htm" class="com.handlermapping.controller.HomeController" />
+		<bean name="/viewIndex.htm" class="com.handlermapping.controller.IndexController" />
+	
+
+
+ 
+ 	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>

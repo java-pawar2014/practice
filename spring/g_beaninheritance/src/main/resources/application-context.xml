@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+	<bean id="swift1" class="com.springcore.beaninherit.bean.Car">
+		<property name="modelId" value="66585" />
+		<property name="modelName" value="Swift" />
+		<property name="engineType" value="Diesel" />
+		<property name="engineModel" value="DDIS" />
+		<property name="classType" value="Hatchback" />
+	</bean>
+	
+	<bean id="swift2" class="com.springcore.beaninherit.bean.Car">
+		<property name="modelId" value="66585" />
+		<property name="modelName" value="Swift" />
+		<property name="engineType" value="Diesel" />
+		<property name="engineModel" value="DDIS" />
+		<property name="classType" value="Hatchback" />
+	</bean>
+-->
+
+<!-- 
+	<bean id="baseSwift" class="com.springcore.beaninherit.bean.Car" abstract="true">
+ -->
+	
+	<bean id="baseSwift" abstract="true">
+<!-- 
+		<property name="modelId" value="66585" />
+ -->
+		<property name="modelName" value="Swift" />
+		<property name="engineType" value="Diesel" />
+		<property name="engineModel" value="DDIS" />
+		<property name="classType" value="Hatchback" />
+	</bean>
+	
+	<bean id="swift1" class="com.springcore.beaninherit.bean.Car" parent="baseSwift">
+		<property name="modelId" value="6651" />
+	</bean>	
+	<bean id="swift2" class="com.springcore.beaninherit.bean.Car" parent="baseSwift">
+		<property name="modelId" value="8656" />
+	</bean>	
+	<bean id="swift3" class="com.springcore.beaninherit.bean.Car" parent="baseSwift">
+		<property name="modelId" value="9854" />
+	</bean>	
+	
+</beans>

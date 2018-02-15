@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--Use of nothing(default); calls String, String -->
+<!-- 	
+	<bean id="robot" class="com.springcore.consconf.bean.Robot">
+		<constructor-arg value="10" />
+		<constructor-arg value="google" />
+	</bean>
+ -->
+
+	<!-- Using type; calls int, String -->
+<!-- 	
+	<bean id="robot" class="com.springcore.consconf.bean.Robot">
+		<constructor-arg value="10" type="int"/>
+		<constructor-arg value="google" />
+	</bean>
+ -->
+  
+	<!-- Using index (0-based); calls String, String -->
+<!-- 	
+	<bean id="robot" class="com.springcore.consconf.bean.Robot">
+		<constructor-arg value="google" />
+		<constructor-arg value="cardio" index="0"/>
+	</bean>
+ -->
+ 
+	<!-- Using index and type; calls int, String -->
+<!-- 
+	<bean id="robot" class="com.springcore.consconf.bean.Robot">
+		<constructor-arg value="google" />
+		<constructor-arg value="50" index="0" type="int"/>
+	</bean>
+ -->
+
+	<!-- Using index and type; calls int, String -->
+	<bean id="robot" class="com.springcore.consconf.bean.Robot">
+		<constructor-arg value="100" name="robotMfgId"/>
+		<constructor-arg value="indo-machines" name="robotName"/>
+	</bean>
+ 
+  
+</beans>

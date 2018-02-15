@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+
+	<!-- Around Advice configuration -->
+	<bean id="calculator" class="com.aop.declarative.around.bean.Calculator" />
+	<bean id="loggingAspect" class="com.aop.declarative.around.aspect.LoggingAspect" />
+	<aop:config>
+		<aop:aspect ref="loggingAspect">
+			<aop:around method="logging" pointcut="bean(calculator)" />
+		</aop:aspect>
+	</aop:config>
+	<!-- /Around Advice configuration -->
+
+	<!-- After Returning Aspect configuration -->
+	<bean id="keyGenerator" class="com.aop.declarative.after.bean.KeyGenerator" />
+	<bean id="keyCheckAspect" class="com.aop.declarative.after.aspect.KeyCheckerAspect" />
+	<aop:config>
+		<aop:pointcut expression="bean(keyGenerator)" id="key" />
+		<aop:aspect ref="keyCheckAspect">
+			<aop:after-returning method="keyChecker"
+				returning="output" pointcut-ref="key" />
+		</aop:aspect>
+	</aop:config>
+	<!-- /After Returning Aspect configuration -->
+
+	<!-- Before Aspect configuration -->
+	<bean id="loanApproval" class="com.aop.declarative.before.service.LoanApproval" />
+	<bean id="securityChecker" class="com.aop.declarative.util.SecurityChecker" />
+	<bean id="securityCheckAspect" class="com.aop.declarative.before.aspect.SecurityCheckAspect">
+		<property name="securityChecker" ref="securityChecker" />
+	</bean>
+	<aop:config>
+		<aop:aspect ref="securityCheckAspect">
+			<aop:before method="secured"
+				pointcut="execution(* com.aop.declarative.before.service.LoanApproval.*(..))" />
+		</aop:aspect>
+	</aop:config>
+	<!-- /Before Aspect configuration -->
+
+	<!-- Throwing Aspect (Exception) configuration -->
+	<bean id="generalClass" class="com.aop.declarative.throwing.bean.GeneralClass" />
+	<bean id="global"
+		class="com.aop.declarative.throwing.aspect.GlobalExceptionAspect" />
+	<aop:config>
+		<aop:pointcut expression="execution(* com.aop.declarative.throwing.bean.*.*(..))"
+			id="exception" />
+		<aop:aspect ref="global">
+			<aop:after-throwing method="exception"
+				pointcut-ref="exception" throwing="cause" />
+		</aop:aspect>
+	</aop:config>
+	<!-- /Throwing Aspect (Exception) configuration -->
+
+</beans>

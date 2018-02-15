@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="payslip" class="com.springcore.propeditor.bean.Payslip">
+		<property name="employeeId" value="100" />
+		<property name="name" value="John" />
+		<property name="paidDate" value="24/10/2017" />
+		<property name="verifiers" value="kim, nick" />
+		<property name="payslipFile"
+			value="/home/bpawar/Documents/practice/spring/o_cloud/src/com/cloud/persistence/ActivityDAO.java" />
+	</bean>
+<!-- 
+	<bean id="complexNumber" class="com.springcore.propeditor.custom.bean.ComplexNumber">
+		<property name="exponent" value="5" />
+		<property name="base" value="4" />
+	</bean>
+
+	<bean id="mathCalculator" class="com.springcore.propeditor.custom.bean.MathCalculator">
+		<property name="complexNumber" ref="complexNumber" />
+	</bean>
+ -->	
+
+	<bean id="mathCalculator" class="com.springcore.propeditor.custom.bean.MathCalculator">
+		<property name="complexNumber" value=" 6, 10 " />
+	</bean>
+ 
+</beans>

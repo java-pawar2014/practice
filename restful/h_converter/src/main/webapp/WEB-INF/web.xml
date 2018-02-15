@@ -1,0 +1,48 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Type Converters</display-name>
+	<!-- Without application class, using XML configuration -->
+<!--
+ 	<servlet>
+		<servlet-name>JerseyWebApp</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>org.restful.converter.resource</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>jersey.config.server.provider.classnames</param-name>
+			<param-value>org.restful.converter.provider.BeanConverterProvider</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>jersey.config.server.tracing</param-name>
+			<param-value>ALL</param-value>
+		</init-param>
+
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JerseyWebApp</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+-->
+	<!-- Configure Application class for maven projects -->
+	<servlet>
+	    <servlet-name>JerseyWebApp</servlet-name>
+	    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+	    <init-param>
+	        <param-name>javax.ws.rs.Application</param-name>
+	        <param-value>org.restful.converter.config.ConverterApplication</param-value>
+	    </init-param>
+	</servlet>
+    <servlet-mapping>
+        <servlet-name>JerseyWebApp</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+</web-app>

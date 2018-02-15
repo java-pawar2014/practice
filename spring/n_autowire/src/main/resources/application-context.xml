@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="dumpty" class="com.springcore.autowire.bean.Dumpty"
+		autowire-candidate="true">
+		<property name="name" value="X" />
+	</bean>
+<!-- 	
+	<bean id="humpty" class="com.springcore.autowire.bean.Humpty" autowire="byName" />
+ -->
+<!-- 	
+	<bean id="humpty" class="com.springcore.autowire.bean.Humpty" autowire="byType" />
+ -->
+<!-- 
+	<bean id="humpty" class="com.springcore.autowire.bean.Humpty" autowire="constructor" />
+ -->
+<!-- 
+	<bean id="humpty" class="com.springcore.autowire.bean.Humpty" autowire="default" />
+ -->
+	<bean id="humpty" class="com.springcore.autowire.bean.Humpty" autowire="no" />
+</beans>

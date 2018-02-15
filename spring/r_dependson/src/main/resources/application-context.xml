@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="loanCalculator" class="com.springcore.dependson.bean.LoanCalculator" depends-on="cacheManager">
+		<property name="cache" ref="cache" />
+	</bean>
+
+	<bean id="cache" class="com.springcore.dependson.util.Cache" />
+
+	<bean id="cacheManager" class="com.springcore.dependson.util.CacheManager">
+		<constructor-arg name="cache" ref="cache" />
+		<constructor-arg name="accessorMap">
+			<map key-type="java.lang.String" value-type="com.springcore.dependson.accessor.CityInterestAccessor">
+				<entry key="city_interest" value-ref="cityInterestAccessor"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="cityInterestAccessor" class="com.springcore.dependson.accessor.impl.CityInterestAccessorImpl" />
+</beans>

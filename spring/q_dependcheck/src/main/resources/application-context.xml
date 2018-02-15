@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="engine" class="com.springcore.dependcheck.bean.Engine"
+		dependency-check="simple">
+		<property name="engineCode" value="ENG9886665" />
+		<property name="engineModel" value="BSIV" />
+		<property name="engineType" value="DIESEL" />
+	</bean>
+
+	<bean id="motor" class="com.springcore.dependcheck.bean.Motor"
+		dependency-check="objects">
+	<!-- 
+		<property name="engine"><null/></property>
+	 -->
+		<property name="engine" ref="engine" />
+	</bean>
+</beans>

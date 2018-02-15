@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="errors" />
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3036/spring" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="employeeDao" class="com.springmvc.simpleform.dao.EmployeeDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<bean id="employeeService" class="com.springmvc.simpleform.service.EmployeeService">
+		<property name="employeeDAO" ref="employeeDao" />
+	</bean>
+
+	<bean id="empInsertController"
+		class="com.springmvc.simpleform.controller.EmployeeInsertController">
+		<property name="employeeService" ref="employeeService" />
+		<property name="formView" value="insert" />
+		<property name="commandClass" value="com.springmvc.simpleform.bean.EmployeeBean" />
+		<property name="commandName" value="employee" />
+		<property name="sessionForm" value="true" />
+		<property name="validator" ref="employeeValidator" />
+	</bean>
+	<bean id="employeeValidator"
+		class="com.springmvc.simpleform.validator.EmployeeBeanValidator" />
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="home.htm">rootController</prop>
+				<prop key="insert.htm">empInsertController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="rootController"
+		class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

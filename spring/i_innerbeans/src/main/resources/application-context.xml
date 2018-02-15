@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bicycle" class="com.springcore.innerbeans.bean.Bicycle">
+		<property name="modelCode" value="CYCLE669" />
+		<property name="modelName" value="SPORT RACER" />
+		<property name="unitPrice" value="5699.0f" />
+		<property name="chain">
+			<bean class="com.springcore.innerbeans.bean.Chain">
+				<property name="chainCode" value="CH858" />
+				<property name="pitchCount" value="126" />
+			</bean>
+		</property>
+	</bean>
+</beans>

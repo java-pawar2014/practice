@@ -1,0 +1,35 @@
+In declarative (xml) based approach, the cross-cutting logic
+is known by aspect.
+The cross-cutting functionality is not mandatory but it gives
+common aspect to different components.
+There are four ways to apply cross-cutting functionality:
+
+1) Around:
+	> The around aspect gives the ability to apply cross cutting
+	functionality to the target point-cut method with full
+	control over the execution.
+	> The proxy object calls original method but instead of calling
+	original method, it invokes method specified of aspect by 
+	passing ProceedingJoinPoint as method argument.
+	> This ProceedingJoinPoint contains invocation information like
+	method, invoking object and input data.
+	> We can have following controls in around advise:
+		> can modify the input (pre-processing)
+		> can skip the original method invocation
+		> can modify the output (post-processing)
+		> can return output as null.
+	> proceed() method of ProceedingJoinPoint calls original method.
+	
+	<bean id="calculator" class="com.around.beans.Calculator" />
+	<bean id="loggingAspect" class="com.around.aspect.LoggingAspect" />
+	<aop:config>
+		<aop:aspect ref="loggingAspect">
+			<aop:around method="logging" pointcut="execution(* com.
+			around.beans.Calculator.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+	
+	Here, instead of calling Calculator.add, it calls logging method 
+	of LoggingAspect.
+	
+2) Before advise:

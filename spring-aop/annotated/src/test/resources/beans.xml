@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<!-- Before aspect configuration -->
+	<!-- <context:component-scan base-package="com.aop.annotated.before.aspect;com.aop.annotated.before.service;com.aop.annotated.util" /> -->
+	
+	<!-- After aspect Configuration -->
+	<!-- <context:component-scan base-package="com.aop.annotated.after.aspect;com.aop.annotated.after.service;com.aop.annotated.util" /> -->
+
+	<!-- Around Aspect Configuration -->
+	<!-- <context:component-scan base-package="com.aop.annotated.around.aspect;com.aop.annotated.around.service" /> -->
+
+	<!-- After Throwing Aspect confiuration -->
+	<context:component-scan base-package="com.aop.annotated.throwing.aspect;com.aop.annotated.throwing.service"/>
+	
+	
+	<!-- Enable autoproxy for all aspects -->
+	<aop:aspectj-autoproxy/>
+	
+</beans>
