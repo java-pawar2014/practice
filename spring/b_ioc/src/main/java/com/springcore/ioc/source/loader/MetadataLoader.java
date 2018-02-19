@@ -14,6 +14,9 @@ public class MetadataLoader {
 		classMetadata = new Properties();
 		try {
 			if (metadataFile == null) {
+				/**
+				 * load from default file
+				 */
 				classMetadata.load(MetadataLoader.class.getClassLoader().getResourceAsStream(FILE_PATH));
 				System.out.println("Metadata loaded from source :\n\t>> " + FILE_PATH);
 			} else {

@@ -15,9 +15,11 @@ public class ContentHandlerApplication extends ResourceConfig {
 		// registerClasses(BuiltInContentHandlerResource.class,
 		// JAXBContentHandlerResource.class, CustomerResolver.class);
 
-		register(JAXBUniversalMarshaller.class);
-		register(BuiltInContentHandlerResource.class);
-		register(JAXBContentHandlerResource.class);
+		registerClasses(JAXBUniversalMarshaller.class, BuiltInContentHandlerResource.class,
+				JAXBContentHandlerResource.class);
+
+		// register(new BuiltInContentHandlerResource());
+		// register(new JAXBContentHandlerResource());
 
 	}
 }

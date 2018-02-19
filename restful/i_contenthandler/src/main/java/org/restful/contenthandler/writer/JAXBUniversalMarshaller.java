@@ -18,7 +18,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Provider
-@Produces(value = { MediaType.APPLICATION_XML, MediaType.APPLICATION_OCTET_STREAM })
+@Produces(value = { "application/octet-stream" })
 public class JAXBUniversalMarshaller implements MessageBodyWriter<Class<?>> {
 
 	@Context

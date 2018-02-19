@@ -29,12 +29,13 @@ import com.springcore.ioc.bean.impl.TextMessageProducer;
 public class ObjectFactory {
 
 	public static Object createObject(String clazz) {
-		Object messageProducer = null;
+		
+		Object instantiatedObject = null;
 		try {
-			messageProducer = Class.forName(clazz).newInstance();
+			instantiatedObject = Class.forName(clazz).newInstance();
 		} catch (Throwable cause) {
 			System.out.println(cause);
 		}
-		return messageProducer;
+		return instantiatedObject;
 	}
 }

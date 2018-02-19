@@ -1,6 +1,6 @@
 package com.springcore.springioc.user;
 
-import com.springcore.springioc.bean.MessageProducer;
+import com.springcore.springioc.service.MessageProducer;
 
 public class MessageWriter {
 

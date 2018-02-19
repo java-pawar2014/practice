@@ -35,7 +35,7 @@ import org.restful.contenthandler.bean.CustomerBean;
 public class JAXBContentHandlerResource {
 
 	@GET
-	@Produces(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_ATOM_XML , MediaType.APPLICATION_OCTET_STREAM})
+	@Produces(value = { MediaType.APPLICATION_XML, "application/octet-stream" })
 	@Path("/customer/find/{id}")
 	public CustomerBean getCustomer(@PathParam("id") int id) {
 		System.out.println("JAXBContentHandlerResource.getCustomer");

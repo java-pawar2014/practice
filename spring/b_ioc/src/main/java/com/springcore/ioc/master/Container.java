@@ -20,6 +20,7 @@ public class Container {
 	}
 
 	public static Container loadContainer(String metadataFile) {
+		System.out.println("Starting container...");
 		if (container == null) {
 			synchronized (Container.class) {
 				if (container == null) {
@@ -52,27 +53,18 @@ public class Container {
 			Object targetObject = ObjectFactory.createObject(className);
 			objectMetadata.put(classKey, targetObject);
 		}
-/*
-		System.out.println("Setting up dependents...");
-		Collection<Object> objects = objectMetadata.values();
-		for (Object object : objects) {
-			Class<?> objectClass = object.getClass();
-			Field[] attributesOfObjectClass = objectClass.getDeclaredFields();
-			for (Field attributeOfObjectClass : attributesOfObjectClass) {
-				Class<?> attributeOfClass = attributeOfObjectClass.getClass();
-				for (Object object1 : objects) {
-					if (attributeOfClass.isAssignableFrom(object1.getClass())) {
-						try {
-							attributeOfObjectClass.set(object, object1);
-						} catch (IllegalArgumentException e) {
-							e.printStackTrace();
-						} catch (IllegalAccessException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		}
-*/
+		/*
+		 * System.out.println("Setting up dependents..."); Collection<Object>
+		 * objects = objectMetadata.values(); for (Object object : objects) {
+		 * Class<?> objectClass = object.getClass(); Field[]
+		 * attributesOfObjectClass = objectClass.getDeclaredFields(); for (Field
+		 * attributeOfObjectClass : attributesOfObjectClass) { Class<?>
+		 * attributeOfClass = attributeOfObjectClass.getClass(); for (Object
+		 * object1 : objects) { if
+		 * (attributeOfClass.isAssignableFrom(object1.getClass())) { try {
+		 * attributeOfObjectClass.set(object, object1); } catch
+		 * (IllegalArgumentException e) { e.printStackTrace(); } catch
+		 * (IllegalAccessException e) { e.printStackTrace(); } } } } }
+		 */
 	}
 }

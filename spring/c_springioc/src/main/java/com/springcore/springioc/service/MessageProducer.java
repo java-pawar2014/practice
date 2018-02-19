@@ -1,4 +1,4 @@
-package com.springcore.springioc.bean;
+package com.springcore.springioc.service;
 
 public interface MessageProducer {
 

@@ -8,7 +8,7 @@ public class SuperServiceInterfaceImpl implements SuperServiceInterface {
 	private SuperInterface superInterface;
 
 	public void serviceMethod1() {
-		System.out.println("Ececuted serviceMethod1() of SuperServiceInterface.");
+		System.out.println("Executed serviceMethod1() of SuperServiceInterface.");
 		superInterface.method1();
 		superInterface.method2();
 	}

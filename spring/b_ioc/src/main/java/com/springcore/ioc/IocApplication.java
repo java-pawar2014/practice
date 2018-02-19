@@ -23,14 +23,17 @@ public class IocApplication {
 	 */
 
 	public static void main(String[] args) {
+		
 		Container container = null;
-		System.out.println("Starting container...");
+		
+		
 		container = Container.loadContainer(null);
+		
 		MessageProducer htmlMessageProducer = (HtmlMessageProducer) container.getObjectMetadata().get("htmlMessageProducer");
 		MessageProducer textMessageProducer = (TextMessageProducer) container.getObjectMetadata().get("textMessageProducer");
 		MessageWriter messageWriter = (MessageWriter) container.getObjectMetadata().get("messageWriter");
 		
-		messageWriter.setMessageProducer(htmlMessageProducer);
+		messageWriter.setMessageProducer(textMessageProducer);
 		messageWriter.writeMessage("Hey Mr. Xyz, have a nice day.");
 	}
 }

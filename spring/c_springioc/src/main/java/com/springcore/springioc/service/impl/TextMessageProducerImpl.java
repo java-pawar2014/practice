@@ -1,6 +1,6 @@
-package com.springcore.springioc.bean.impl;
+package com.springcore.springioc.service.impl;
 
-import com.springcore.springioc.bean.MessageProducer;
+import com.springcore.springioc.service.MessageProducer;
 
 public class TextMessageProducerImpl implements MessageProducer {
 
