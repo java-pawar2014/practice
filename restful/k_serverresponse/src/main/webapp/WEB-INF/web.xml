@@ -3,6 +3,5 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-	<display-name>Custom Content Handler</display-name>
-
+	<display-name>Server Response</display-name>
 </web-app>
