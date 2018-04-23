@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.sourcing.creator.LouisianaSourcing;
 import com.sourcing.creator.MinnesotaSourcing;
 import com.sourcing.creator.NorthCarolinaSourcing;
 import com.sourcing.provider.ConfigReader;
@@ -46,9 +47,7 @@ public class SourceHandlerTest {
 	@BeforeTest(alwaysRun = true)
 	public void initialize() throws InterruptedException {
 
-		Capabilities capabilities = new Capabilities();
-		ChromeOptions chromeOptions = new ChromeOptions();
-		webDriver = new ChromeDriver(chromeOptions);
+		webDriver = new ChromeDriver();
 		Thread.sleep(1000);
 		webDriver.manage().window().maximize();
 	}
@@ -77,7 +76,7 @@ public class SourceHandlerTest {
 		minnesotaSourcing.getSource(city, pageCount, fileName);
 	}
 
-	@Test(dataProvider = "cities-data", dataProviderClass = SourceDataProvider.class, enabled = true, testName = "North-Carolina Sourcing")
+	@Test(dataProvider = "cities-data", dataProviderClass = SourceDataProvider.class, enabled = false, testName = "North-Carolina Sourcing")
 	public void northCarolinaSourceTest(String city, String pageCountValue, String fileName) {
 		NorthCarolinaSourcing northCarolinaSourcing = null;
 		int pageCount = 0;
@@ -85,6 +84,17 @@ public class SourceHandlerTest {
 		northCarolinaSourcing = new NorthCarolinaSourcing(webDriver);
 		pageCount = Integer.parseInt(pageCountValue);
 		northCarolinaSourcing.getSource(city, pageCount, fileName);
+	}
+
+	@Test(dataProvider = "cities-data", dataProviderClass = SourceDataProvider.class, enabled = true, testName = "North-Carolina Sourcing")
+	public void louisianaSourceTest(String city, String pageCountValue, String fileName) {
+		LouisianaSourcing louisianaSourcing = null;
+		int pageCount = 0;
+
+		louisianaSourcing = new LouisianaSourcing(webDriver);
+		pageCount = Integer.parseInt(pageCountValue);
+		louisianaSourcing.getSource(city, pageCount, fileName);
+
 	}
 
 	/**

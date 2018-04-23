@@ -1,0 +1,6 @@
+#spring:
+#  profiles:
+#    active:
+#      - dev
+#      - prod
+address: ${name} is from pune
