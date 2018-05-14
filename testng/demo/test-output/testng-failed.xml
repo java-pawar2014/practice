@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="org.testng.demo.FirstAppTest">
+        <methods>
+          <include name="firstNGTest"/>
+        </methods>
+      </class> <!-- org.testng.demo.FirstAppTest -->
+      <class name="org.testng.demo.ThirdAppTest">
+        <methods>
+          <include name="firstNGTest"/>
+        </methods>
+      </class> <!-- org.testng.demo.ThirdAppTest -->
+      <class name="org.testng.demo.SecondAppTest">
+        <methods>
+          <include name="firstNGTest"/>
+        </methods>
+      </class> <!-- org.testng.demo.SecondAppTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

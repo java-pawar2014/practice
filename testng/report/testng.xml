@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="MasterSuite">
+
+	<listeners>
+		<listener class-name="org.testng.report.listener.ReportListener" />
+	</listeners>
+
+	<suite-files>
+		<suite-file path="testng2.xml"></suite-file>
+		<suite-file path="testng3.xml"></suite-file>
+		<suite-file path="testng1.xml"></suite-file>
+	</suite-files>
+</suite>

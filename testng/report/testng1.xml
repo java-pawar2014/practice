@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="FirstSuite">
+
+	<listeners>
+		<listener class-name="org.testng.report.listener.ReportListener" />
+	</listeners>
+
+	<test name="FirstAppTests">
+
+		<classes>
+			<class name="org.testng.report.FirstAppTest"></class>
+		</classes>
+
+	</test>
+
+</suite>

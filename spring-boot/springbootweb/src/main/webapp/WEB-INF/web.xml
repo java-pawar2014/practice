@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+  	<filter-name>CrossOriginRequestFilter</filter-name>
+  	<display-name>CrossOriginRequestFilter</display-name>
+  	<description></description>
+  	<filter-class>org.spring.springbootweb.filter.CrossOriginRequestFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CrossOriginRequestFilter</filter-name>
+  	<url-pattern>/CrossOriginRequestFilter</url-pattern>
+  </filter-mapping>
 </web-app>

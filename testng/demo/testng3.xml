@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="ThirdSuite" parallel="false">
+ 
+	<listeners>
+		<listener class-name="org.testng.demo.listener.ReportListener" />
+	</listeners>
+
+	<test name="ThirdAppTests">
+
+		<classes>
+			<class name="org.testng.demo.ThirdAppTest"></class>
+		</classes>
+
+	</test>
+
+</suite>
