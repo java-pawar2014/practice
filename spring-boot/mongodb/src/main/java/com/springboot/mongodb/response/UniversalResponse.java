@@ -12,10 +12,28 @@ public class UniversalResponse implements Serializable {
 
 	private static final long serialVersionUID = 6620084280918351286L;
 
-	private String statusMessage;
 	private Integer statusCode;
+	private String statusMessage;
 	private String responseMessage;
 	private Object data;
+
+	public UniversalResponse() {
+	}
+
+	public UniversalResponse(Integer statusCode, String statusMessage, String responseMessage, Object data) {
+		super();
+		this.statusMessage = statusMessage;
+		this.statusCode = statusCode;
+		this.responseMessage = responseMessage;
+		this.data = data;
+	}
+
+	public UniversalResponse(Integer statusCode, String statusMessage, String responseMessage) {
+		super();
+		this.statusMessage = statusMessage;
+		this.statusCode = statusCode;
+		this.responseMessage = responseMessage;
+	}
 
 	public String getStatusMessage() {
 		return statusMessage;

@@ -10,16 +10,13 @@ import org.springframework.stereotype.Service;
 import com.springboot.mongodb.bean.Employee;
 import com.springboot.mongodb.data.repository.EmployeeRepository;
 import com.springboot.mongodb.service.EmployeeService;
+import com.springboot.mongodb.util.ResponseMessage;
 
 @Service
 public class EmployeeServiceHandler implements EmployeeService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceHandler.class);
 
-	private static final String NOT_FOUND = "Employee not found for ID ";
-	private static final String SAVE_FAILED = "Failed to save Employee";
-	private static final String UPDATE_FAILED = "Failed to update Employee for ID ";
-	private static final String NO_EMPLOYEES = "No any Employee(s) found";
 
 	private EmployeeRepository repository;
 
@@ -40,7 +37,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException(SAVE_FAILED);
+			throw new RuntimeException(ResponseMessage.SAVE_FAILED);
 		}
 		return savedEmployee;
 	}
@@ -56,8 +53,8 @@ public class EmployeeServiceHandler implements EmployeeService {
 			if (foundEmployee == null) {
 				throw new RuntimeException();
 			}
-		} catch (RuntimeException e) {
-			throw new RuntimeException(NOT_FOUND + employeeId);
+		} catch (RuntimeException cause) {
+			throw new RuntimeException(ResponseMessage.NOT_FOUND + employeeId);
 		}
 		foundEmployee.setActive(employee.isActive());
 		foundEmployee.setAge(employee.getAge());
@@ -69,7 +66,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException(UPDATE_FAILED + employeeId);
+			throw new RuntimeException(ResponseMessage.UPDATE_FAILED + employeeId);
 		}
 		return updatedEmployee;
 	}
@@ -86,7 +83,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException(NOT_FOUND + employeeId);
+			throw new RuntimeException(ResponseMessage.NOT_FOUND + employeeId);
 		}
 		foundEmployee.setActive(false);
 		try {
@@ -95,7 +92,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException(UPDATE_FAILED + employeeId);
+			throw new RuntimeException(ResponseMessage.UPDATE_FAILED + employeeId);
 		}
 		return updatedEmployee;
 	}
@@ -112,7 +109,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException(NOT_FOUND + employeeId);
+			throw new RuntimeException(ResponseMessage.NOT_FOUND + employeeId);
 		}
 		foundEmployee.setActive(true);
 		try {
@@ -121,7 +118,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException(UPDATE_FAILED + employeeId);
+			throw new RuntimeException(ResponseMessage.UPDATE_FAILED + employeeId);
 		}
 		return updatedEmployee;
 	}
@@ -136,7 +133,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException cause) {
-			throw new RuntimeException(NO_EMPLOYEES);
+			throw new RuntimeException(ResponseMessage.NO_EMPLOYEES);
 		}
 
 		return foundEmployees;
@@ -152,7 +149,7 @@ public class EmployeeServiceHandler implements EmployeeService {
 				throw new RuntimeException();
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException(NOT_FOUND + employeeId);
+			throw new RuntimeException(ResponseMessage.NOT_FOUND + employeeId);
 		}
 		return foundEmployee;
 	}

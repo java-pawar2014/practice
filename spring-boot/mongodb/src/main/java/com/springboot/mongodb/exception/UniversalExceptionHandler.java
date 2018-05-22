@@ -1,35 +1,29 @@
 package com.springboot.mongodb.exception;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.springboot.mongodb.response.UniversalResponse;
-import com.springboot.mongodb.status.Status;
 
-@RestControllerAdvice
+@ControllerAdvice
 public class UniversalExceptionHandler {
+	private static final Logger LOGGER = LoggerFactory.getLogger(UniversalExceptionHandler.class);
 
-	@ExceptionHandler(value = BindException.class)
-	public ResponseEntity<UniversalResponse> bindException(BindException bindException,
-			@Autowired UniversalResponse response) {
-
-		response.setStatusCode(Status.BINDING_ERROR.getValue());
-		response.setStatusMessage(Status.BINDING_ERROR.getStatusMessage());
-		response.setResponseMessage(bindException.getMessage());
-		return ResponseEntity.ok(response);
+	public UniversalExceptionHandler() {
+		LOGGER.info("Initialized UniversalExceptionHandler");
 	}
 
-	@ExceptionHandler(value = org.springframework.boot.context.properties.bind.BindException.class)
-	public ResponseEntity<UniversalResponse> dataBindException(
-			org.springframework.boot.context.properties.bind.BindException bindException,
-			@Autowired UniversalResponse response) {
-
-		response.setStatusCode(Status.BINDING_ERROR.getValue());
-		response.setStatusMessage(Status.BINDING_ERROR.getStatusMessage());
-		response.setResponseMessage(bindException.getMessage());
+	@ExceptionHandler(MongoApplicationException.class)
+	public ResponseEntity<UniversalResponse> mongoApplicationException(MongoApplicationException exception) {
+		LOGGER.info("Exception caught");
+		UniversalResponse response = new UniversalResponse();
+		response.setData(exception.getData());
+		response.setStatusCode(exception.getStatusCode());
+		response.setStatusMessage(exception.getStatusMessage());
+		response.setResponseMessage(exception.getResponseMessage());
 		return ResponseEntity.ok(response);
 	}
 

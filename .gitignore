@@ -9,3 +9,6 @@ log/
 .settings/
 .classpath
 .project
+.mvn/
+mvnw
+mvnw.cmd

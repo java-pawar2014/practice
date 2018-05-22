@@ -1,26 +1,24 @@
-package com.springboot.mongodb.bean;
-
-import java.io.Serializable;
+package com.springboot.validation.web.bean;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
-public class Employee implements Serializable {
-
-	private static final long serialVersionUID = 3493768983308474802L;
+public class Employee {
 
 	private String _id;
-
+	@NotNull(message = "First Name cannot be null")
+	@NotBlank(message = "First Name cannot be blank")
 	@NotEmpty(message = "First Name cannot be empty")
 	@Size(min = 1, max = 20, message = "First Name must be of character size between 1 to 20")
 	private String firstName;
 
+	@NotNull(message = "Last Name cannot be null")
+	@NotBlank(message = "Last Name cannot be blank")
 	@NotEmpty(message = "Last Name cannot be empty")
 	@Size(min = 1, max = 20, message = "Last Name must be of character size between 1 to 20")
 	private String lastName;
