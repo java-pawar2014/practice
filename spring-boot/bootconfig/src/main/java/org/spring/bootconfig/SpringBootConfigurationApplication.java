@@ -2,7 +2,6 @@ package org.spring.bootconfig;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @SpringBootApplication
 public class SpringBootConfigurationApplication {

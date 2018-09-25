@@ -4,3 +4,6 @@
 #      - dev
 #      - prod
 address: ${name} is from pune
+spring:
+  config:
+    location: spring-boot.properties

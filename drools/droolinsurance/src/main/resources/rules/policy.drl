@@ -1,0 +1,41 @@
+package rules
+
+import com.agsft.droolinsurance.model.Policy
+
+rule "INDIVIDUAL POLICY"
+	when
+		policy: Policy(policy.getPolicyType==PolicyType.INDIVIDUAL &&
+		policy.getPolicyHolder().getAddress().equalsIgnoreCase("pune"));
+	then
+		double discount = 2;
+		policy.setPremium(policy.getPremium() - (policy.getPremium() * discount / 100));
+		update(policy);
+	end
+
+rule "VEHICLE POLICY"
+	when
+		policy: Policy(policy.getPolicyType==PolicyType.VEHICLE);
+	then
+		double discount = 4;
+		policy.setPremium(policy.getPremium() - (policy.getPremium() * discount / 100));
+		update(policy);
+	end
+	
+rule "LIABILITY POLICY"
+	when
+		policy: Policy(policy.getPolicyType==PolicyType.LIABILITY);
+	then
+		double discount = 0.5;
+		policy.setPremium(policy.getPremium() - (policy.getPremium() * discount / 100));
+		update(policy);
+	end
+
+rule "COMBO POLICY"
+	when
+		policy: Policy(policy.getPolicyType==PolicyType.COMBO);
+	then
+		double discount = 5.5;
+		policy.setPremium(policy.getPremium() - (policy.getPremium() * discount / 100));
+		update(policy);
+	end
+	

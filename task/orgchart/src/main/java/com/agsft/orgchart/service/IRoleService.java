@@ -1,6 +1,11 @@
 package com.agsft.orgchart.service;
 
-import com.agsft.orgchart.data.model.Role;
+import java.util.List;
+
+import com.agsft.orgchart.exception.DataNotFoundException;
+import com.agsft.orgchart.exception.DeleteException;
+import com.agsft.orgchart.exception.SaveException;
+import com.agsft.orgchart.web.model.RoleDTO;
 
 /**
  * @author bpawar
@@ -8,16 +13,18 @@ import com.agsft.orgchart.data.model.Role;
  */
 public interface IRoleService {
 
-	Role findById(String id);
+	List<RoleDTO> searchAll() throws DataNotFoundException;
 
-	Role findByName(String name);
+	RoleDTO searchById(String id) throws DataNotFoundException;
 
-	Role save(Role role);
+	RoleDTO searchByName(String name) throws DataNotFoundException;
 
-	Role update(Role role);
+	RoleDTO save(RoleDTO role) throws SaveException;
 
-	Boolean remove(Role role);
+	List<RoleDTO> saveAll(List<RoleDTO> roles) throws SaveException;
 
-	Boolean remove(String id);
+	boolean removeByName(String name) throws DeleteException;
+
+	boolean removeById(String id) throws DeleteException;
 
 }

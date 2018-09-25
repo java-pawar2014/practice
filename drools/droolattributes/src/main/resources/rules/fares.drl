@@ -1,0 +1,11 @@
+package rules;
+
+import com.agsft.droolattributes.fact.TaxiRide;
+import com.agsft.droolattributes.fact.Fare;
+
+rule "Calculate taxi fare - 1"
+	when
+		taxiRide: TaxiRide(taxiRide.isNightSurcharge() == true && distance > 10);
+	then
+		fare: Fare(10.0,50.0);
+end

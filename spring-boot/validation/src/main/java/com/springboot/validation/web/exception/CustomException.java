@@ -2,6 +2,7 @@ package com.springboot.validation.web.exception;
 
 public class CustomException extends Exception {
 
+	private static final long serialVersionUID = 1279534103604400687L;
 	private int status;
 	private String message;
 

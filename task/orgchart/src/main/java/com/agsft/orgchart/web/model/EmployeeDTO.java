@@ -1,172 +1,96 @@
 package com.agsft.orgchart.web.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.validation.constraints.Email;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.agsft.orgchart.data.model.Employee;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
+ * The data transfer object which interacts with service and controller on
+ * behalf of {@link Employee}.
+ * 
  * @author bpawar
  *
  */
+
 @Document
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeDTO implements Serializable {
 
 	private static final long serialVersionUID = 3973252435057202089L;
-
+	/**
+	 * Holds the string representation of ID of the Employee
+	 */
 	private String _id;
-	private String employeeId;
+	/**
+	 * Holds the string representation of FIRST NAME of the Employee
+	 */
 	private String firstName;
+	/**
+	 * Holds the string representation of LAST NAME of the Employee
+	 */
 	private String lastName;
+	/**
+	 * Holds the string representation of EMAIL of the Employee
+	 */
+	@Email()
 	private String email;
-	private String phone;
+	/**
+	 * Holds the number representation of PHONE NUMBER of the Employee
+	 */
+	private long phone;
+	/**
+	 * Holds the date/time representation of BIRTH DATE of the Employee
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;
+	/**
+	 * Holds the string representation of HIGHER DEGREE of the Employee
+	 */
 	private String higherDegree;
-	private Integer passYear;
-	private Integer totalExperience;
+	/**
+	 * Holds the number representation of PASS YEAR of the Employee
+	 */
+	private int passYear;
+	/**
+	 * Holds the number representation of TOTAL EXPERIENCE of the Employee
+	 */
+	private int totalExperience;
+	/**
+	 * Holds the date/time representation of JOINING DATE of the Employee
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date joiningDate;
-	private BigDecimal assignedCost;
+	/**
+	 * Holds the number representation of TOTAL COST ASSIGNED to the Employee
+	 */
+	private long assignedCost;
+	/**
+	 * Holds the {@link RoleDTO} object
+	 */
 	private RoleDTO role;
+	/**
+	 * Holds the {@link DepartmentDTO}
+	 */
 	private DepartmentDTO department;
+	/**
+	 * Holds the string representation of PARENT ID of the Employee
+	 */
 	private String parentEmployeeId;
+	/**
+	 * Holds the boolean representation for ACTIVE status of the Employee
+	 */
 	private boolean active;
-
-	public String get_id() {
-		return _id;
-	}
-
-	public void set_id(String _id) {
-		this._id = _id;
-	}
-
-	public String getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public String getHigherDegree() {
-		return higherDegree;
-	}
-
-	public void setHigherDegree(String higherDegree) {
-		this.higherDegree = higherDegree;
-	}
-
-	public Integer getPassYear() {
-		return passYear;
-	}
-
-	public void setPassYear(Integer passYear) {
-		this.passYear = passYear;
-	}
-
-	public Integer getTotalExperience() {
-		return totalExperience;
-	}
-
-	public void setTotalExperience(Integer totalExperience) {
-		this.totalExperience = totalExperience;
-	}
-
-	public Date getJoiningDate() {
-		return joiningDate;
-	}
-
-	public void setJoiningDate(Date joiningDate) {
-		this.joiningDate = joiningDate;
-	}
-
-	public RoleDTO getRole() {
-		return role;
-	}
-
-	public void setRole(RoleDTO role) {
-		this.role = role;
-	}
-
-	public DepartmentDTO getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(DepartmentDTO department) {
-		this.department = department;
-	}
-
-	public BigDecimal getAssignedCost() {
-		return assignedCost;
-	}
-
-	public String getParentEmployeeId() {
-		return parentEmployeeId;
-	}
-
-	public void setParentEmployeeId(String parentEmployeeId) {
-		this.parentEmployeeId = parentEmployeeId;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	public void setAssignedCost(BigDecimal assignedCost) {
-		this.assignedCost = assignedCost;
-	}
-
-	@Override
-	public String toString() {
-		return "EmployeeDTO [_id=" + _id + ", employeeId=" + employeeId + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", phone=" + phone + ", birthDate=" + birthDate + ", higherDegree="
-				+ higherDegree + ", passYear=" + passYear + ", totalExperience=" + totalExperience + ", joiningDate="
-				+ joiningDate + ", assignedCost=" + assignedCost + ", role=" + role + ", department=" + department
-				+ ", parentEmployeeId=" + parentEmployeeId + ", active=" + active + "]";
-	}
 
 }

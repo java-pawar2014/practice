@@ -1,0 +1,64 @@
+package com.agsft.droolhiring.rules;
+
+import com.agsft.droolhiring.dto.CandidateDTO;
+
+rule "Check to java skill present"
+no-loop true
+	when
+		candidate: CandidateDTO(candidate.isJavaSkill());
+	then
+		candidate.setAptitude(true);
+		System.out.println("Candidate is allowed for aptitude");
+		update(candidate);
+	end
+
+rule "Check to candidate is cleared aptitude test"
+no-loop true
+	when
+		candidate: CandidateDTO(candidate.isAptitude());
+	then
+		candidate.setTechnical1(true);
+		System.out.println("Candidate is allowed for technical 1");
+		update(candidate);
+	end
+
+rule "Check to candidate is cleared technical1 test"
+no-loop true
+	when
+	
+	then
+	
+	end
+
+rule "Check to candidate is cleared machine test"
+
+	when
+	
+	then
+	
+	end
+
+rule "Check to candidate is cleared technical2 test"
+
+	when
+	
+	then
+	
+	end
+
+rule "Check to candidate is cleared HR round"
+
+	when
+	
+	then
+	
+	end
+
+rule "Check to candidate is selected"
+
+	when
+	
+	then
+	
+	end
+	

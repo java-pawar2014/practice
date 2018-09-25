@@ -1,96 +1,121 @@
 package com.agsft.orgchart.service;
 
-import java.io.File;
 import java.util.List;
 
 import com.agsft.orgchart.data.model.Employee;
+import com.agsft.orgchart.data.repository.IEmployeeRepository;
+import com.agsft.orgchart.exception.DataNotFoundException;
+import com.agsft.orgchart.exception.DeleteException;
+import com.agsft.orgchart.exception.SaveException;
+import com.agsft.orgchart.exception.UpdateException;
 import com.agsft.orgchart.web.model.EmployeeDTO;
 
 /**
  * The implementation must be implemented for search, new save, delete and
- * existing update for the model {@link Employee}.
+ * existing update for the {@link Employee}.<br>
  * 
+ * @see IEmployeeRepository
  * @author bpawar
  *
  */
 public interface IEmployeeService {
 
 	/**
-	 * Returns {@link Employee} for the provided id. The id must not be null.
-	 * Throw {@link IllegalArgumentException} if id is null or empty
+	 * Implementation must return an {@link EmployeeDTO} looking in to storage
+	 * by its id.
 	 * 
 	 * @param id
-	 *            non-null and non-empty id of employee
-	 * @return object of {@link Employee} for id if found else null
-	 * @throws IllegalArgumentException
-	 *             if id is null or empty
+	 *            must not be {@literal null}.
+	 * @return the {@link EmployeeDTO} with the given id
+	 * @throws DataNotFoundException
+	 *             if {@code id} is {@literal null} or entity not found.
 	 */
-	EmployeeDTO findById(String id) throws IllegalArgumentException;
+	EmployeeDTO searchById(String id) throws DataNotFoundException;
 
 	/**
-	 * Returns all {@link Employee} as {@link List} if found else return empty
-	 * list.
+	 * Implementation must return an {@link EmployeeDTO} looking in to storage
+	 * by its email.
 	 * 
-	 * @return list of {@link Employee} if found else empty
+	 * @param email
+	 *            must not be {@literal null}.
+	 * @return the {@link EmployeeDTO} with the given email
+	 * @throws DataNotFoundException
+	 *             if {@code email} is {@literal null} or entity not found.
 	 */
-	List<EmployeeDTO> findAll();
+	EmployeeDTO searchByEmail(String email) throws DataNotFoundException;
 
 	/**
-	 * Creates new {@link Employee} in storage and returns newly created.
+	 * Returns all {@link EmployeeDTO} as list if found
 	 * 
-	 * @param employee
-	 *            non-null instance of {@link Employee}
-	 * @return newly created {@link Employee} instance
-	 * @throws IllegalArgumentException
-	 *             if argument employee is null
+	 * @return not empty list of {@link EmployeeDTO}s
+	 * @throws DataNotFoundException
+	 *             if no {@link EmployeeDTO}s found
 	 */
-	EmployeeDTO save(EmployeeDTO employee) throws IllegalArgumentException;
+	List<EmployeeDTO> searchAll() throws DataNotFoundException;
 
 	/**
-	 * Updates existing {@link Employee} in storage and returns updated. First
-	 * look for the provided id, if found then update existing and if not found
-	 * create new. It returns newly created of updated.
-	 * 
-	 * @param employee
-	 *            non-null instance of {@link Employee}
-	 * @return updated or newly created {@link Employee} instance
-	 * @throws IllegalArgumentException
-	 *             if argument employee is null
-	 */
-	EmployeeDTO update(EmployeeDTO employee) throws IllegalArgumentException;
-
-	/**
-	 * Removes existing {@link Employee} from storage and returns boolean true
-	 * if success else false.
+	 * Saves a given entity. Use the returned instance for further operations as
+	 * the save operation might have changed the entity instance completely.
 	 * 
 	 * @param employee
-	 *            non-null instance of {@link Employee}
-	 * @return true if removed else false
-	 * @throws IllegalArgumentException
-	 *             if argument employee is null
+	 *            must not be {@literal null}.
+	 * @return the saved entity will never be {@literal null}.
+	 * @throws SaveException
+	 *             if fails to save
 	 */
-	Boolean remove(EmployeeDTO employee) throws IllegalArgumentException;
+	EmployeeDTO save(EmployeeDTO employee) throws SaveException;
 
 	/**
-	 * Removes existing {@link Employee} for provided id from storage and
-	 * returns boolean true if success else false. If {@link Employee} for given
-	 * id is not present, always return false
+	 * Iterates over the list and creates new {@link EmployeeDTO} in storage for
+	 * each iteration and returns list of newly persisted entities.
+	 * 
+	 * @see #save(EmployeeDTO)
+	 * @param employees
+	 *            non-null and non-empty instance of list of {@link EmployeeDTO}
+	 * @return list of newly created {@link EmployeeDTO} instances
+	 * @throws SaveException
+	 *             on failure to persist new {@link EmployeeDTO}
+	 */
+	List<EmployeeDTO> saveAll(List<EmployeeDTO> employees) throws SaveException;
+
+	/**
+	 * Updates existing {@link EmployeeDTO} in storage and returns updated.
+	 * First look for the provided id, if found then update existing and if not
+	 * found create new. It returns newly created of updated.
+	 * 
+	 * @see #save(EmployeeDTO)
+	 * @param employee
+	 *            non-null instance of {@link EmployeeDTO}
+	 * @return updated or newly created {@link EmployeeDTO} instance
+	 * @throws UpdateException
+	 *             on failure to update and persist existing
+	 * @throws SaveException
+	 *             on failure of save when new creation
+	 */
+	EmployeeDTO update(EmployeeDTO employee) throws SaveException, UpdateException;
+
+	/**
+	 * Removes {@link EmployeeDTO} for email
+	 * 
+	 * @param email
+	 *            non-null and non-empty email of {@link EmployeeDTO}
+	 * @return true on removal otherwise false
+	 * @throws DeleteException
+	 *             if {@link EmployeeDTO} not found for given email
+	 * @see #searchByEmail(String)
+	 */
+	boolean removeByEmail(String email) throws DeleteException;
+
+	/**
+	 * Removes {@link EmployeeDTO} for id
 	 * 
 	 * @param id
-	 *            non-null and non-empty id of employee
-	 * @return true if removed else false
-	 * @throws IllegalArgumentException
-	 *             if argument employee is null
+	 *            non-null and non-empty id of {@link EmployeeDTO}
+	 * @return true on removal otherwise false
+	 * @throws DeleteException
+	 *             if {@link EmployeeDTO} not found for given id
+	 * @see #searchById(String)
 	 */
-	Boolean remove(String id) throws IllegalArgumentException;
-
-	/**
-	 * Imports the initial data in a bulk.
-	 * 
-	 * @param file
-	 *            non-null {@link File} to be imported
-	 * @return true if import successful otherwise false
-	 */
-	public boolean importData(File file) throws Throwable;
+	boolean removeById(String id) throws DeleteException;
 
 }
